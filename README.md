@@ -8,15 +8,15 @@ The SSH Key Manager is called in the following way
 
     ./ssh-manager.sh {ACTION} username@domain
 
-## Actions
+## Create Action
 
-The following actions are available
+Create a new key or replace an existing one.
 
-### Create
+Example:
 
-Create a new key or replace an existing one
+    ./ssh-manager.sh create foo@bar.com
 
-#### Parameters
+### Parameters
 
 The following optional parameters are available
 The parameter defaults are in the []:
