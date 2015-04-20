@@ -30,7 +30,7 @@ for keytype in $KEY_TYPES; do
 			keylength=$(openssl rsa -in "$keydomainpath/$keyuser" -text -noout | grep -oE "[0-9]+ bit")
 
 			# Show the information
-			echo "$keytype: $keyuser@$keydomain [$keylength]"
+			echo "$keytype [$keylength]: $keyuser@$keydomain"
 		done
 	done
 done
