@@ -23,12 +23,14 @@ if [ $KEY_PASS_PROMPT ]; then
 fi
 
 # Set the path the key should be written to
-KEY_PATH="/home/$USERNAME/.ssh/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
+KEY_PATH_DIR="/home/$USERNAME/.ssh/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
+
+# Set the path of the key its self
+KEY_PATH_KEY="$KEY_PATH_DIR/$KEY_USER"
 
 # Create and set the ownership of the directory to store the key in
-mkdir -p "$KEY_PATH"
-chmod 0700 "$KEY_PATH"
+mkdir -p "$KEY_PATH_DIR"
+chmod 0700 "$KEY_PATH_DIR"
 
 # Write the key
-ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH/$KEY_USER" -N "$KEY_PASS"
-
+ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_KEY" -N "$KEY_PASS"
