@@ -1,7 +1,7 @@
 command_exists () {
     if [ -x "$1" ]; then
-    	return 1
+    	return 0
 	else
-		return 0
+		return 1
 	fi
 }
