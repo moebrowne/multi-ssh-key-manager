@@ -49,5 +49,14 @@ fi
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
+# Set the library path
+LIBRARY_PATH="$DIR/utils/$ACTION.sh"
+
+# Check the library exists
+if [ ! -f "$LIBRARY_PATH" ]; then
+	echo "ERROR: Unknown action '$ACTION'"
+	exit
+fi
+
 # Include the library for handling this action
-. "$DIR/utils/$ACTION.sh"
+. "$LIBRARY_PATH"
