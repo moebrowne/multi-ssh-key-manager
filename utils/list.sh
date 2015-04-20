@@ -40,7 +40,7 @@ for keytype in $KEY_TYPES; do
 			fi
 
 			# Get Key length
-			keylength=$($EXEC_OPENSSL rsa -in "$keydomainpath/$keyuser" -text -noout | grep -oE "[0-9]+ bit")
+			keylength=$($EXEC_OPENSSL $keytype -in "$keydomainpath/$keyuser" -text -noout | grep -oE "[0-9]+ bit")
 
 			# Show the information
 			echo "${keytype^^} [$keylength]: $keyuser@$keydomain$keycomment"
