@@ -1,4 +1,10 @@
 
+# Check if openssl is avaliable
+if ! command_exists "$EXEC_OPENSSL"; then
+	echo "ERROR: openssl can't be found [$EXEC_OPENSSL]"
+	exit
+fi
+
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
@@ -34,7 +40,7 @@ for keytype in $KEY_TYPES; do
 			fi
 
 			# Get Key length
-			keylength=$(openssl rsa -in "$keydomainpath/$keyuser" -text -noout | grep -oE "[0-9]+ bit")
+			keylength=$($EXEC_OPENSSL rsa -in "$keydomainpath/$keyuser" -text -noout | grep -oE "[0-9]+ bit")
 
 			# Show the information
 			echo "${keytype^^} [$keylength]: $keyuser@$keydomain$keycomment"
