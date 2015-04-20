@@ -11,11 +11,11 @@ CONNECTION_STRING=$2
 IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
 
 # Check both the username and domain have been found correctly
-if [ -z "${KEY_USER+x}" ]; then
+if [ "$KEY_USER" = "" ]; then
 	echo "ERROR: Please specify a username"
 	exit
 fi
-if [ -z "${KEY_DOMAIN+x}" ]; then
+if [ "$KEY_DOMAIN" = "" ]; then
 	echo "ERROR: Please specify a domain"
 	exit
 fi
