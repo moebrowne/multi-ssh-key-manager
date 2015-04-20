@@ -1,14 +1,8 @@
 # Multi SSH Key Manager
 
-This tool intends to simplify creation, storage, removal and instillation of per user per domain SSH keys
+This tool intends to simplify creation, storage, removal and instillation of per user per domain SSH keys.
 
-## Usage
-
-The SSH Key Manager is called in the following way
-
-    ./ssh-manager.sh {ACTION} username@domain
-
-## Create Action
+## Create
 
 Create a new key or replace an existing one.
 
