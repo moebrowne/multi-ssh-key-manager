@@ -19,3 +19,11 @@ The parameter defaults are in the []:
     -c|--comment	A plain text comment to be included in the key []
     -b|--bits)		The bit size of the key [4096]
     -t|--type)		The type of key to create [rsa]
+
+## List
+
+List all the current keys
+
+Example:
+
+    ./ssh-manager.sh list
