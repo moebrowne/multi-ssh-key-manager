@@ -12,11 +12,6 @@ KEY_PASS=""
 KEY_COMMENT="oliver@freshleafmedia.co.uk"
 KEY_PASS_PROMPT=false
 
-# Check if a comment has been passed in
-if [ -z "${2+x}" ]; then
-	KEY_COMMENT="$2"
-fi
-
 # Get any params defined
 for i in "$@"
 do
