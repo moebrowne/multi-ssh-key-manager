@@ -1,5 +1,4 @@
 # Defaults!
-KEY_TYPE="rsa"
 KEY_BITS="4096"
 KEY_PASS=""
 KEY_COMMENT=""
@@ -21,12 +20,6 @@ if [ $KEY_PASS_PROMPT = true ]; then
 	read -s -p "Enter password: " KEY_PASS
 	echo
 fi
-
-# Set the path the key should be written to
-KEY_PATH_DIR="/home/$USERNAME/.ssh/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
-
-# Set the path of the key its self
-KEY_PATH_KEY="$KEY_PATH_DIR/$KEY_USER"
 
 # Create the directory to store the key in if it doesn't already
 if [ ! -d "$KEY_PATH_DIR" ]; then

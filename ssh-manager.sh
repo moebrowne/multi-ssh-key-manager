@@ -7,6 +7,17 @@ USERNAME=`id -un`
 ACTION=$1
 CONNECTION_STRING=$2
 
+# Defaults!
+KEY_TYPE="rsa"
+
+# Get any params defined
+for i in "$@"
+do
+case $i in
+		-t|--type)		KEY_TYPE="${i#*=}"		;;
+esac
+done
+
 # Split the connection string into the domain and the username
 IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
 
@@ -19,6 +30,12 @@ if [ "$KEY_DOMAIN" = "" ]; then
 	echo "ERROR: Please specify a domain"
 	exit
 fi
+
+# Set the path the key should be written to
+KEY_PATH_DIR="/home/$USERNAME/.ssh/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
+
+# Set the path of the key its self
+KEY_PATH_KEY="$KEY_PATH_DIR/$KEY_USER"
 
 # Get the source directory
 DIR="${BASH_SOURCE%/*}"
