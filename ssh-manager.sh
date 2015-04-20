@@ -63,8 +63,11 @@ fi
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
+# Set the library root path
+LIBRARY_PATH_ROOT="$DIR/utils"
+
 # Set the library path
-LIBRARY_PATH="$DIR/utils/$ACTION.sh"
+LIBRARY_PATH="$LIBRARY_PATH_ROOT/$ACTION.sh"
 
 # Check the library exists
 if [ ! -f "$LIBRARY_PATH" ]; then
