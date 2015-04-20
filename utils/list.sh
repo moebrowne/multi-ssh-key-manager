@@ -8,9 +8,6 @@ for keytype in $KEY_TYPES; do
 	# Set the path to this type of key
 	keytypepath="$KEY_PATH_ROOT/$keytype"
 
-	# Set the key type to be uppercase
-	keytype="${keytype^^}"
-
 	# Find all the domains with a key of this type
 	KEY_DOMAINS=`find $keytypepath/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
@@ -25,12 +22,22 @@ for keytype in $KEY_TYPES; do
 
 		# Loop through each key file we could find
 		for keyuser in $KEY_USERS; do
-			
+
+			# Get the comment from the key
+			regexKeyComment="^ssh-rsa .+ (.+)$"
+			[[ `cat "$KEY_PATH_ROOT/$keytype/$keydomain/$keyuser.pub"` =~ $regexKeyComment ]]
+			keycomment="${BASH_REMATCH[1]}"
+
+			# If the key has a comment enclose it in brackets
+			if [ "$keycomment" != "" ]; then
+				keycomment=" ($keycomment)"
+			fi
+
 			# Get Key length
 			keylength=$(openssl rsa -in "$keydomainpath/$keyuser" -text -noout | grep -oE "[0-9]+ bit")
 
 			# Show the information
-			echo "$keytype [$keylength]: $keyuser@$keydomain"
+			echo "${keytype^^} [$keylength]: $keyuser@$keydomain$keycomment"
 		done
 	done
 done
