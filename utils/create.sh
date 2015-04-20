@@ -17,7 +17,7 @@ esac
 done
 
 # Prompt for a password if required
-if [ $KEY_PASS_PROMPT ]; then
+if [ $KEY_PASS_PROMPT = true ]; then
 	read -s -p "Enter password: " KEY_PASS
 	echo
 fi
