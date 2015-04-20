@@ -42,7 +42,7 @@ echo "Writing a $KEY_BITS bit $KEY_TYPE key to: $KEY_PATH_KEY"
 ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_KEY" -N "$KEY_PASS"
 
 # Set the permissions of the key
-chmod 0600 "KEY_PATH_KEY"
+chmod 0600 "$KEY_PATH_KEY"
 
 # Check the key was created
 if [ -f "$KEY_PATH_KEY" ]; then
