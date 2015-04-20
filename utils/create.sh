@@ -11,6 +11,8 @@ do
 case $i in
         -p|--passwd)	KEY_PASS_PROMPT=true	;;
 		-c|--comment)	KEY_COMMENT="${i#*=}"	;;
+		-b|--bits)		KEY_BITS="${i#*=}"		;;
+		-t|--type)		KEY_TYPE="${i#*=}"		;;
 esac
 done
 
