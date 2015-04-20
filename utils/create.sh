@@ -39,3 +39,10 @@ ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_KEY" -N
 
 # Set the permissions of the key
 chmod 0600 "KEY_PATH_KEY"
+
+# Check the key was created
+if [ -f "$KEY_PATH_KEY" ]; then
+	echo "ERROR: Something went wrong, key not created"
+else
+	echo "Key written successfully"
+fi
