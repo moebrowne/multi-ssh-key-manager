@@ -34,7 +34,7 @@ mkdir -p "$KEY_PATH_DIR"
 chmod 0700 "$KEY_PATH_DIR"
 
 # Write the key
-echo "Writing key to: $KEY_PATH_KEY"
+echo "Writing a $KEY_BITS bit $KEY_TYPE key to: $KEY_PATH_KEY"
 ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_KEY" -N "$KEY_PASS"
 
 # Set the permissions of the key
