@@ -20,6 +20,9 @@ KEY_PASS_PROMPT=false
 # Set the key base root
 KEY_PATH_ROOT="/home/$USERNAME/.ssh"
 
+# Define the executables to use
+EXEC_KEYGEN="/usr/bin/ssh-keygen"
+
 # Get any defined params
 while [[ $# > 1 ]]
 do
