@@ -7,18 +7,32 @@ USERNAME=`id -un`
 ACTION=$1
 CONNECTION_STRING=$2
 
+#Skip the action and connection string
+shift && shift
+
 # Defaults!
 KEY_TYPE="rsa"
+KEY_BITS="4096"
+KEY_PASS=""
+KEY_COMMENT=""
+KEY_PASS_PROMPT=false
 
 # Set the key base root
 KEY_PATH_ROOT="/home/$USERNAME/.ssh"
 
-# Get any params defined
-for i in "$@"
+# Get any defined params
+while [[ $# > 1 ]]
 do
-case $i in
-		-t|--type)		KEY_TYPE="${i#*=}"		;;
+key="$1"
+
+case $key in
+	-p|--passwd)	KEY_PASS_PROMPT=true			;;
+	-c|--comment)	KEY_COMMENT="$2"				;;
+	-b|--bits)		KEY_BITS="$2"					;;
+	-t|--type)		KEY_TYPE="$2"					;;
+    *)				echo "Unknown option $2"; exit	;;
 esac
+shift
 done
 
 # Split the connection string into the domain and the username

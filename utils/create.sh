@@ -1,19 +1,3 @@
-# Defaults!
-KEY_BITS="4096"
-KEY_PASS=""
-KEY_COMMENT=""
-KEY_PASS_PROMPT=false
-
-# Get any params defined
-for i in "$@"
-do
-case $i in
-        -p|--passwd)	KEY_PASS_PROMPT=true	;;
-		-c|--comment)	KEY_COMMENT="${i#*=}"	;;
-		-b|--bits)		KEY_BITS="${i#*=}"		;;
-		-t|--type)		KEY_TYPE="${i#*=}"		;;
-esac
-done
 
 # Prompt for a password if required
 if [ $KEY_PASS_PROMPT = true ]; then
