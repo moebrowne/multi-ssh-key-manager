@@ -25,7 +25,7 @@ done
 IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
 
 # Only throw an error if the connection string is missing for actions that require them
-if [ "$ACTION" != "list" ]; then
+if [ "$ACTION" = "create" ]; then
 
 	# Check both the username and domain have been found correctly
 	if [ "$KEY_USER" = "" ]; then
