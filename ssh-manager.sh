@@ -3,23 +3,9 @@
 #Get the current users name
 USERNAME=`id -un`
 
-CONNECTION_STRING=$1
-
-# Defaults!
-KEY_TYPE="rsa"
-KEY_BITS="4096"
-KEY_PASS=""
-KEY_COMMENT="oliver@freshleafmedia.co.uk"
-KEY_PASS_PROMPT=false
-
-# Get any params defined
-for i in "$@"
-do
-case $i in
-        -p|--passwd)	KEY_PASS_PROMPT=true	;;
-		-c|--comment)	KEY_COMMENT="${i#*=}"	;;
-esac
-done
+# Setup the global variables
+ACTION=$1
+CONNECTION_STRING=$2
 
 # Split the connection string into the domain and the username
 IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
@@ -34,19 +20,9 @@ if [ -z "${KEY_DOMAIN+x}" ]; then
 	exit
 fi
 
-# Prompt for a password if required
-if [ $KEY_PASS_PROMPT ]; then
-	read -s -p "Enter password: " KEY_PASS
-	echo
-fi
+# Get the source directory
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
-# Set the path the key should be written to
-KEY_PATH="/home/$USERNAME/.ssh/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
-
-# Create and set the ownership of the directory to store the key in
-mkdir -p "$KEY_PATH"
-chmod 0700 "$KEY_PATH"
-
-# Write the key
-ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -C oliver@freshleafmedia.co.uk -f "$KEY_PATH/$KEY_USER" -N "$KEY_PASS"
-
+# Include the library for handling this action
+. "$DIR/utils/$ACTION.sh"
