@@ -31,8 +31,11 @@ if [ "$KEY_DOMAIN" = "" ]; then
 	exit
 fi
 
+# Set the key base root
+KEY_PATH_ROOT="/home/$USERNAME/.ssh"
+
 # Set the path the key should be written to
-KEY_PATH_DIR="/home/$USERNAME/.ssh/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
+KEY_PATH_DIR="$KEY_PATH_ROOT/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
 
 # Set the path of the key its self
 KEY_PATH_KEY="$KEY_PATH_DIR/$KEY_USER"
