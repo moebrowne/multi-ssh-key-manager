@@ -28,9 +28,13 @@ KEY_PATH_DIR="/home/$USERNAME/.ssh/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute p
 # Set the path of the key its self
 KEY_PATH_KEY="$KEY_PATH_DIR/$KEY_USER"
 
-# Create and set the ownership of the directory to store the key in
-echo "Creating key directory: $KEY_PATH_DIR"
-mkdir -p "$KEY_PATH_DIR"
+# Create the directory to store the key in if it doesn't already
+if [ ! -d "$KEY_PATH_DIR" ]; then
+	echo "Creating key directory: $KEY_PATH_DIR"
+	mkdir -p "$KEY_PATH_DIR"
+fi
+
+# Set the permissions of the key directory
 chmod 0700 "$KEY_PATH_DIR"
 
 # Write the key
