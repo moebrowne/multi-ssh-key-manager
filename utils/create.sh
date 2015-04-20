@@ -34,3 +34,6 @@ chmod 0700 "$KEY_PATH_DIR"
 
 # Write the key
 ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_KEY" -N "$KEY_PASS"
+
+# Set the permissions of the key
+chmod 0600 "KEY_PATH_KEY"
