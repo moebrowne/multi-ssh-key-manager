@@ -64,7 +64,7 @@ for keytype in $KEY_TYPES; do
 			fi
 
 			# Show the information
-			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keyflags		$keycomment"
+			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keyflags		$COLOUR_GRY$keycomment$COLOUR_RST"
 		done
 	done
 done
