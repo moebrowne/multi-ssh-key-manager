@@ -4,20 +4,7 @@
 USERNAME=`id -un`
 
 # Setup the global variables
-ACTION=$1
-CONNECTION_STRING=$2
 KEY_MIN_LENGH=1024
-
-#Skip the action and connection string
-shift && shift
-
-# Defaults!
-KEY_TYPE="rsa"
-KEY_BITS="4096"
-KEY_PASS=""
-KEY_COMMENT=""
-KEY_PASS_PROMPT=false
-KEY_PATH_SHOW=false
 
 # Set the key base root
 KEY_PATH_ROOT="/home/$USERNAME/.ssh"
@@ -26,21 +13,61 @@ KEY_PATH_ROOT="/home/$USERNAME/.ssh"
 EXEC_KEYGEN="/usr/bin/ssh-keygen"
 EXEC_OPENSSL="/usr/bin/openssl"
 
-# Get any defined params
-while [[ $# > 1 ]]
-do
-key="$1"
+args=" $@ "
 
-case $key in
-	-p|--passwd)	KEY_PASS_PROMPT=true			;;
-	-c|--comment)	KEY_COMMENT="$2"				;;
-	-b|--bits)		KEY_BITS="$2"					;;
-	-t|--type)		KEY_TYPE="$2"					;;
-	--paths)		KEY_PATH_SHOW=true				;;
-    *)				echo "Unknown option $2"; exit	;;
-esac
-shift
-done
+regexArgAction=' ([^ -]*) ?([^ -]*) '
+[[ $args =~ $regexArgAction ]]
+ACTION="${BASH_REMATCH[1]}"
+CONNECTION_STRING="${BASH_REMATCH[2]}"
+
+regexArgComment=' -(-comment|c) ([^ ]+) '
+[[ $args =~ $regexArgComment ]]
+if [ "${BASH_REMATCH[2]}" != "" ]; then
+	KEY_COMMENT="${BASH_REMATCH[2]}"
+else
+	KEY_COMMENT=""
+fi
+
+regexArgType=' -(-type|t) ([^ ]+) '
+[[ $args =~ $regexArgType ]]
+if [ "${BASH_REMATCH[2]}" != "" ]; then
+	KEY_TYPE="${BASH_REMATCH[2]}"
+else
+	KEY_TYPE="rsa"
+fi
+
+regexArgBits=' -(-bits|b) ([0-9]+) '
+[[ $args =~ $regexArgBits ]]
+if [ "${BASH_REMATCH[2]}" != "" ]; then
+	KEY_BITS="${BASH_REMATCH[2]}"
+else
+	KEY_BITS=4096
+fi
+
+regexArgPasswd=' -(-passwd|p) '
+[[ $args =~ $regexArgPasswd ]]
+if [ "${BASH_REMATCH[1]}" != "" ]; then
+	KEY_PASS_PROMPT=true
+else
+	KEY_PASS_PROMPT=false
+fi
+
+regexArgPaths=' -(-paths) '
+[[ $args =~ $regexArgPaths ]]
+if [ "${BASH_REMATCH[1]}" != "" ]; then
+	KEY_PATH_SHOW=true
+else
+	KEY_PATH_SHOW=false
+fi
+
+
+#echo "ACTION			$ACTION"
+#echo "CONNECTION_STRING	$CONNECTION_STRING"
+#echo "KEY_PASS_PROMPT		$KEY_PASS_PROMPT"
+#echo "KEY_COMMENT		$KEY_COMMENT"
+#echo "KEY_BITS		$KEY_BITS"
+#echo "KEY_TYPE		$KEY_TYPE"
+#echo "KEY_PATH_SHOW		$KEY_PATH_SHOW"
 
 # Split the connection string into the domain and the username
 IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
