@@ -56,11 +56,13 @@ for keytype in $KEY_TYPES; do
 
 			# Check if the key is of a proper length
 			if [[ $keylength -lt "$KEY_MIN_LENGH" ]]; then
-				keynotice="$COLOUR_RED	!!SHORT KEY!!$COLOUR_RST"
+				keylength="$COLOUR_RED_BAK$keylength bit$COLOUR_RST"
+			else
+				keylength="$COLOUR_YEL$keylength bit$COLOUR_RST"
 			fi
 
 			# Show the information
-			echo -e "${keytype^^}	$COLOUR_YEL$keylength bit$COLOUR_RST   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keynotice$keycomment"
+			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keynotice$keycomment"
 		done
 	done
 done
