@@ -6,11 +6,11 @@ This tool intends to simplify creation, storage, removal and instillation of per
 
 Create a new key or replace an existing one.
 
-### Example
+#### Example
 
     ./ssh-manager.sh create foo@bar.com
 
-### Parameters
+#### Parameters
 
 The following optional parameters are available
 The parameter defaults are in the []:
@@ -24,6 +24,6 @@ The parameter defaults are in the []:
 
 List all the current keys
 
-### Example
+#### Example
 
     ./ssh-manager.sh list
