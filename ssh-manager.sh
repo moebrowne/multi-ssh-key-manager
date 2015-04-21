@@ -71,8 +71,9 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 # Set the library root path
 LIBRARY_PATH_ROOT="$DIR/utils"
 
-# Include the generic functions library
+# Include the generic libraries
 . "$LIBRARY_PATH_ROOT/generic.sh"
+. "$LIBRARY_PATH_ROOT/colours.sh"
 
 # Set the library path
 LIBRARY_PATH="$LIBRARY_PATH_ROOT/$ACTION.sh"
