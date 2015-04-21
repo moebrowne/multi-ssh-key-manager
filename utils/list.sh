@@ -39,11 +39,6 @@ for keytype in $KEY_TYPES; do
 			[[ `cat "$KEY_PATH_ROOT/$keytype/$keydomain/$keyuser.pub"` =~ $regexKeyComment ]]
 			keycomment="${BASH_REMATCH[1]}"
 
-			# If the key has a comment enclose it in brackets
-			if [ "$keycomment" != "" ]; then
-				keycomment="($keycomment)"
-			fi
-
 			# Get Key length
 			[[ `$EXEC_OPENSSL $keytype -in "$keydomainpath/$keyuser" -text -noout` =~ $regexKeyLength ]]
 			keylength="${BASH_REMATCH[1]}"
