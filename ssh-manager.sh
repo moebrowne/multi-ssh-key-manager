@@ -17,6 +17,7 @@ KEY_BITS="4096"
 KEY_PASS=""
 KEY_COMMENT=""
 KEY_PASS_PROMPT=false
+KEY_PATH_SHOW=false
 
 # Set the key base root
 KEY_PATH_ROOT="/home/$USERNAME/.ssh"
@@ -35,6 +36,7 @@ case $key in
 	-c|--comment)	KEY_COMMENT="$2"				;;
 	-b|--bits)		KEY_BITS="$2"					;;
 	-t|--type)		KEY_TYPE="$2"					;;
+	--paths)		KEY_PATH_SHOW=true				;;
     *)				echo "Unknown option $2"; exit	;;
 esac
 shift

@@ -63,8 +63,13 @@ for keytype in $KEY_TYPES; do
 				keylength="$COLOUR_YEL$keylength bit$COLOUR_RST"
 			fi
 
+			# Check if we should show the keys path
+			if [ $KEY_PATH_SHOW = true ]; then
+				keypathcomment=" => $keydomainpath/$keyuser"
+			fi
+
 			# Show the information
-			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keyflags		$COLOUR_GRY$keycomment$COLOUR_RST"
+			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keyflags		$COLOUR_GRY$keycomment$COLOUR_RST	$keypathcomment"
 		done
 	done
 done
