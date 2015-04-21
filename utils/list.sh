@@ -49,7 +49,7 @@ for keytype in $KEY_TYPES; do
 
 				keyflags="$keyflags[PUB] "
 			else
-				keyflags="$keyflags[NO PUB] "
+				keyflags="$keyflags[$COLOUR_RED""NO PUB$COLOUR_RST] "
 			fi
 
 			# Get Key length
