@@ -50,7 +50,7 @@ for keytype in $KEY_TYPES; do
 			fi
 
 			# Show the information
-			echo -e "${keytype^^}	[$COLOUR_YEL$keylength bit$COLOUR_RST]:	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keynotice$keycomment"
+			echo -e "${keytype^^}	$COLOUR_YEL$keylength bit$COLOUR_RST   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keynotice$keycomment"
 		done
 	done
 done
