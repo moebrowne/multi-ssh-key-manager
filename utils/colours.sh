@@ -7,3 +7,6 @@ COLOUR_YEL='\e[0;33m' # Yellow
 COLOUR_BLU='\e[0;34m' # Blue
 COLOUR_PUR='\e[0;35m' # Purple
 COLOUR_CYN='\e[0;36m' # Cyan
+
+# Text backgrounds
+COLOUR_RED_BAK='\e[0;101m' # Red
