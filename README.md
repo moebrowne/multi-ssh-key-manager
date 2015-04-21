@@ -27,3 +27,10 @@ List all the current keys
 #### Example
 
     ./ssh-manager.sh list
+
+#### Parameters
+
+The following optional parameters are available
+The parameter defaults are in the []:
+
+    --paths	Show the paths of the key files [false]
