@@ -36,7 +36,7 @@ for keytype in $KEY_TYPES; do
 		for keyuser in $KEY_USERS; do
 
 			# Get the comment from the key
-			[[ `cat "$KEY_PATH_ROOT/$keytype/$keydomain/$keyuser.pub"` =~ $regexKeyComment ]]
+			[[ `cat "$keydomainpath/$keyuser.pub"` =~ $regexKeyComment ]]
 			keycomment="${BASH_REMATCH[1]}"
 
 			# Get Key length
