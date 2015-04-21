@@ -12,7 +12,7 @@ regexKeyLength="([0-9]+) bit"
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
-echo "Type	Length		Connection String	Comment"
+echo "Type	Length		Connection String	Flags	Comment"
 
 # Loop through all the key types
 for keytype in $KEY_TYPES; do
@@ -37,7 +37,7 @@ for keytype in $KEY_TYPES; do
 
 			# Reset
 			keylength="????"
-			keynotice=""
+			keyflags=""
 			keycomment=""
 
 			# Check if the public key can be found
@@ -46,8 +46,10 @@ for keytype in $KEY_TYPES; do
 				# Get the comment from the key
 				[[ `cat "$keydomainpath/$keyuser.pub"` =~ $regexKeyComment ]]
 				keycomment="${BASH_REMATCH[1]}"
+
+				keyflags="$keyflags[PUB] "
 			else
-				keynotice="$keynotice !!NO PUB KEY!!"
+				keyflags="$keyflags[NO PUB] "
 			fi
 
 			# Get Key length
@@ -62,7 +64,7 @@ for keytype in $KEY_TYPES; do
 			fi
 
 			# Show the information
-			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keynotice$keycomment"
+			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keyflags	$keycomment"
 		done
 	done
 done
