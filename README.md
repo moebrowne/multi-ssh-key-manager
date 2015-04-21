@@ -33,4 +33,4 @@ List all the current keys
 The following optional parameters are available
 The parameter defaults are in the []:
 
-    --paths	Show the paths of the key files [false]
+    --paths		Show the paths of the key files [false]
