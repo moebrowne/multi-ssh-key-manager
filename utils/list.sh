@@ -49,7 +49,7 @@ for keytype in $KEY_TYPES; do
 			# Check if the key is of a proper length
 			keynotice=""
 			if [[ $keylength -lt "$KEY_MIN_LENGH" ]]; then
-				keynotice="$COLOUR_RED	SHORT KEY!$COLOUR_RST"
+				keynotice="$COLOUR_RED	!!SHORT KEY!!$COLOUR_RST"
 			fi
 
 			# Show the information
