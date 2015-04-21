@@ -5,6 +5,10 @@ if ! command_exists "$EXEC_OPENSSL"; then
 	exit
 fi
 
+#Define regex rules
+regexKeyComment="^ssh-rsa .+ (.+)$"
+regexKeyLength="([0-9]+) bit"
+
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
@@ -30,7 +34,6 @@ for keytype in $KEY_TYPES; do
 		for keyuser in $KEY_USERS; do
 
 			# Get the comment from the key
-			regexKeyComment="^ssh-rsa .+ (.+)$"
 			[[ `cat "$KEY_PATH_ROOT/$keytype/$keydomain/$keyuser.pub"` =~ $regexKeyComment ]]
 			keycomment="${BASH_REMATCH[1]}"
 
@@ -40,10 +43,11 @@ for keytype in $KEY_TYPES; do
 			fi
 
 			# Get Key length
-			keylength=$($EXEC_OPENSSL $keytype -in "$keydomainpath/$keyuser" -text -noout | grep -oE "[0-9]+ bit")
+			[[ `$EXEC_OPENSSL $keytype -in "$keydomainpath/$keyuser" -text -noout` =~ $regexKeyLength ]]
+			keylength="${BASH_REMATCH[1]}"
 
 			# Show the information
-			echo "${keytype^^} [$keylength]: $keyuser@$keydomain$keycomment"
+			echo "${keytype^^} [$keylength bit]: $keyuser@$keydomain$keynotice$keycomment"
 		done
 	done
 done
