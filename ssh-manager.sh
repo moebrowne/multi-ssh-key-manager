@@ -6,6 +6,7 @@ USERNAME=`id -un`
 # Setup the global variables
 ACTION=$1
 CONNECTION_STRING=$2
+KEY_MIN_LENGH=1024
 
 #Skip the action and connection string
 shift && shift

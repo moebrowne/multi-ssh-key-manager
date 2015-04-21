@@ -46,6 +46,12 @@ for keytype in $KEY_TYPES; do
 			[[ `$EXEC_OPENSSL $keytype -in "$keydomainpath/$keyuser" -text -noout` =~ $regexKeyLength ]]
 			keylength="${BASH_REMATCH[1]}"
 
+			# Check if the key is of a proper length
+			keynotice=""
+			if [[ $keylength -lt "$KEY_MIN_LENGH" ]]; then
+				keynotice=" SHORT KEY!"
+			fi
+
 			# Show the information
 			echo "${keytype^^} [$keylength bit]: $keyuser@$keydomain$keynotice$keycomment"
 		done
