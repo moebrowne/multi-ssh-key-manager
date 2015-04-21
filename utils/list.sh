@@ -57,7 +57,7 @@ for keytype in $KEY_TYPES; do
 			keylength="${BASH_REMATCH[1]}"
 
 			# Check if the key is of a proper length
-			if [[ $keylength -lt "$KEY_MIN_LENGH" ]]; then
+			if [[ $keylength -lt "$KEY_MIN_LENGH" ]] || [[ $keylength -eq "$KEY_MIN_LENGH" ]]; then
 				keylength="$COLOUR_RED_BAK$keylength bit$COLOUR_RST"
 			else
 				keylength="$COLOUR_YEL$keylength bit$COLOUR_RST"
