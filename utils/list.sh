@@ -12,7 +12,7 @@ regexKeyLength="([0-9]+) bit"
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
-echo "Type	Length		Connection String	Flags	Comment"
+echo "Type	Length		Connection String	Flags		Comment"
 
 # Loop through all the key types
 for keytype in $KEY_TYPES; do
@@ -64,7 +64,7 @@ for keytype in $KEY_TYPES; do
 			fi
 
 			# Show the information
-			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keyflags	$keycomment"
+			echo -e "${keytype^^}	$keylength   	$COLOUR_CYN$keyuser$COLOUR_RST@$COLOUR_PUR$keydomain$COLOUR_RST	$keyflags		$keycomment"
 		done
 	done
 done
