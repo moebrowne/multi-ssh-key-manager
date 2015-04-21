@@ -35,16 +35,26 @@ for keytype in $KEY_TYPES; do
 		# Loop through each key file we could find
 		for keyuser in $KEY_USERS; do
 
-			# Get the comment from the key
-			[[ `cat "$keydomainpath/$keyuser.pub"` =~ $regexKeyComment ]]
-			keycomment="${BASH_REMATCH[1]}"
+			# Reset
+			keylength="????"
+			keynotice=""
+			keycomment=""
+
+			# Check if the public key can be found
+			if [ -f "$keydomainpath/$keyuser.pub" ]; then
+
+				# Get the comment from the key
+				[[ `cat "$keydomainpath/$keyuser.pub"` =~ $regexKeyComment ]]
+				keycomment="${BASH_REMATCH[1]}"
+			else
+				keynotice="$keynotice !!NO PUB KEY!!"
+			fi
 
 			# Get Key length
 			[[ `$EXEC_OPENSSL $keytype -in "$keydomainpath/$keyuser" -text -noout` =~ $regexKeyLength ]]
 			keylength="${BASH_REMATCH[1]}"
 
 			# Check if the key is of a proper length
-			keynotice=""
 			if [[ $keylength -lt "$KEY_MIN_LENGH" ]]; then
 				keynotice="$COLOUR_RED	!!SHORT KEY!!$COLOUR_RST"
 			fi
