@@ -2,6 +2,11 @@
 
 This tool intends to simplify creation, storage, removal and instillation of per user per domain SSH keys.
 
+The only setup required is to add the following to the top of your SSH config `~/.ssh/config`
+
+    Host *
+    IdentityFile ~/.ssh/rsa/%h/%r
+
 ## Create
 
 Create a new key or replace an existing one.
