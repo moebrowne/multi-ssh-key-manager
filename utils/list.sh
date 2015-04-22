@@ -12,6 +12,7 @@ regexKeyLength="([0-9]+) bit"
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
+# Output the table headers
 echo -e "Type\033[10GLength\033[24GConnection String\033[66GFlags\033[79GComment"
 
 # Loop through all the key types
