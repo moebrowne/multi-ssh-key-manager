@@ -34,3 +34,12 @@ The following optional parameters are available
 The parameter defaults are in the []:
 
     --paths		Show the paths of the key files [false]
+
+
+## Remove
+
+Remove a users key files
+
+#### Example
+
+    ./ssh-manager.sh remove foo@bar.com
