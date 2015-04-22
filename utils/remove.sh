@@ -2,7 +2,7 @@
 # Check the key exists
 if [ -f "$KEY_PATH_KEY" ]; then
 	# Remove the key
-	rm "$KEY_PATH_KEY"
+	shred -zu "$KEY_PATH_KEY"
 
 	# Tell the user the key has been removed
 	echo "The key for $KEY_USER@$KEY_DOMAIN has been removed"
