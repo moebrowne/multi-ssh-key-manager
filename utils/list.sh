@@ -13,6 +13,14 @@ regexKeyComment="^ssh-rsa .+ (.+)$"
 regexKeyLength="([0-9]+) bit"
 regexKeyFile='^([^\.]+)(.pub)?$'
 
+# Check if there are any keys
+KEY_COUNT=`find $KEY_PATH_ROOT/**/* -type f -printf "%f\n" | wc -l`
+
+if [ $KEY_COUNT = 0 ]; then
+	echo "No keys could be found"
+	exit
+fi
+
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
