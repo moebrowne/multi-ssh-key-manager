@@ -11,6 +11,12 @@ LIBRARY_PATH_ROOT="$DIR/utils"
 . "$LIBRARY_PATH_ROOT/generic.sh"
 . "$LIBRARY_PATH_ROOT/colours.sh"
 
+# Show the banner
+echo -e "-----------------------------------------"
+echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.1$COLOUR_RST"
+echo -e "-----------------------------------------"
+echo
+
 #Get the current users name
 USERNAME=`id -un`
 
@@ -132,3 +138,5 @@ fi
 
 # Include the library for handling this action
 . "$LIBRARY_PATH"
+
+echo
