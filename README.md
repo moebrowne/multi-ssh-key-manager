@@ -48,3 +48,16 @@ Remove a users key files
 #### Example
 
     ./ssh-manager.sh remove foo@bar.com
+
+#### Parameters
+
+The following optional parameters are available
+The parameter defaults are in the []:
+
+    -d|--remove-with	The command to use when removing the key files [shred]
+
+The `-d` / `--remove-with` flag can take the following values:
+
+- `rm`
+- `shred`
+- `shred100`
