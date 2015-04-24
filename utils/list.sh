@@ -5,9 +5,13 @@ if ! command_exists "$EXEC_OPENSSL"; then
 	exit
 fi
 
+# Define an array of users to make sure we can separate pub and private keys
+declare -A userArray
+
 #Define regex rules
 regexKeyComment="^ssh-rsa .+ (.+)$"
 regexKeyLength="([0-9]+) bit"
+regexKeyFile='^([^\.]+)(.pub)?$'
 
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
@@ -31,21 +35,37 @@ for keytype in $KEY_TYPES; do
 		keydomainpath="$keytypepath/$keydomain"
 
 		# Get all the keys for this domain
-		KEY_USERS=`find $keydomainpath/ -mindepth 1 -maxdepth 1 -type f ! -name \*.pub -printf "%f\n"`
+		KEY_USERS=`find $keydomainpath/ -mindepth 1 -maxdepth 1 -type f -printf "%f\n"`
 
-		# Loop through each key file we could find
-		for keyuser in $KEY_USERS; do
+		# Loop through each key file we could finds
+		for keyfile in $KEY_USERS; do
 
-			# Reset
+			# Get the user name from this key
+			[[ $keyfile =~ $regexKeyFile ]]
+			keyUsername="${BASH_REMATCH[1]}"
+
+			# Check if we have already displayed the key for this user
+			if [ "${userArray[$keyUsername]}" = true ]; then
+				continue
+			fi
+
+			# Add this user to the array of users weve already proccessed
+			userArray[$keyUsername]=true
+
+			# Set the paths for the pub and private keys
+			keyPathPub="$keydomainpath/$keyUsername.pub"
+			keyPathPriv="$keydomainpath/$keyUsername"
+
+			# Resets
 			keylength="????"
 			keyflags=""
 			keycomment=""
 
 			# Check if the public key can be found
-			if [ -f "$keydomainpath/$keyuser.pub" ]; then
+			if [ -f "$keyPathPub" ]; then
 
 				# Get the comment from the key
-				[[ `cat "$keydomainpath/$keyuser.pub"` =~ $regexKeyComment ]]
+				[[ `cat "$keyPathPub"` =~ $regexKeyComment ]]
 				keycomment="${BASH_REMATCH[1]}"
 
 				keyflags="$keyflags[PUB] "
@@ -53,24 +73,32 @@ for keytype in $KEY_TYPES; do
 				keyflags="$keyflags[$COLOUR_RED""NO PUB$COLOUR_RST] "
 			fi
 
-			# Get Key length
-			[[ `$EXEC_OPENSSL $keytype -in "$keydomainpath/$keyuser" -text -noout` =~ $regexKeyLength ]]
-			keylength="${BASH_REMATCH[1]}"
+			# Check if the private key can be found
+			if [ -f "$keyPathPriv" ]; then
 
-			# Check if the key is of a proper length
-			if [[ $keylength -lt "$KEY_MIN_LENGH" ]] || [[ $keylength -eq "$KEY_MIN_LENGH" ]]; then
-				keylength="$COLOUR_RED_BAK$keylength bit$COLOUR_RST"
+				# Get Key length
+				[[ `$EXEC_OPENSSL $keytype -in "$keyPathPriv" -text -noout` =~ $regexKeyLength ]]
+				keylength="${BASH_REMATCH[1]}"
+
+				# Check if the key is of a proper length
+				if [[ $keylength -lt "$KEY_MIN_LENGH" ]] || [[ $keylength -eq "$KEY_MIN_LENGH" ]]; then
+					keylength="$COLOUR_RED_BAK$keylength bit$COLOUR_RST"
+				else
+					keylength="$COLOUR_YEL$keylength bit$COLOUR_RST"
+				fi
+
+				keyflags="$keyflags[PRIV] "
 			else
-				keylength="$COLOUR_YEL$keylength bit$COLOUR_RST"
+				keyflags="$keyflags[$COLOUR_RED""NO PRIV$COLOUR_RST] "
 			fi
 
 			# Check if we should show the keys path
 			if [ $KEY_PATH_SHOW = true ]; then
-				keypathcomment=" => $keydomainpath/$keyuser"
+				keypathcomment=" => $keyPathPriv"
 			fi
 
 			# Show the information
-			echo -e "${keytype^^}\033[10G$keylength\033[24G$COLOUR_CYN$keyuser$COLOUR_RST\033[40G$COLOUR_PUR$keydomain$COLOUR_RST\033[66G$keyflags\033[79G$COLOUR_GRY$keycomment$COLOUR_RST	$keypathcomment"
+			echo -e "${keytype^^}\033[10G$keylength\033[24G$COLOUR_CYN$keyUsername$COLOUR_RST\033[40G$COLOUR_PUR$keydomain$COLOUR_RST\033[66G$keyflags\033[79G$COLOUR_GRY$keycomment$COLOUR_RST	$keypathcomment"
 		done
 	done
 done
