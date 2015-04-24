@@ -88,8 +88,9 @@ if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ]; then
 	# Set the path the key should be written to
 	KEY_PATH_DIR="$KEY_PATH_ROOT/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
 
-	# Set the path of the key its self
+	# Set the path of the keys
 	KEY_PATH_PRIV="$KEY_PATH_DIR/$KEY_USER"
+	KEY_PATH_PUB="$KEY_PATH_DIR/$KEY_USER.pub"
 
 fi
 
