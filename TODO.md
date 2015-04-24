@@ -1,7 +1,6 @@
 
 Improvements:
 
-- Show a warning if the requested key length is <= 1024
 - Add an optional logfile output
 - Add a revoke method to delete keys
 	- Optionally remove from server
