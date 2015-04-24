@@ -11,7 +11,7 @@ regexArgRemovalProgramExec='^([^ ])'
 removalProgramExec="${BASH_REMATCH[1]}"
 
 # Check the requested removal command is avaliable
-if [ ! -x $removalProgramExec ]; then
+if ! command_exists "$removalProgramExec"; then
 	#Use RM as a safe default
 	KEY_REMOVAL_PROG="rm"
 fi
