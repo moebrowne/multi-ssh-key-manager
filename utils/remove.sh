@@ -26,7 +26,7 @@ echo "Removing keys using '$removalCommand'"
 # Check the private key exists
 if [ -f "$KEY_PATH_PRIV" ]; then
 	# Remove the keys
-	removalCommand "$KEY_PATH_PRIV"
+	$removalCommand "$KEY_PATH_PRIV"
 
 	# Tell the user the private key has been removed
 	echo "$KEY_USER@$KEY_DOMAIN: Removed the private key"
@@ -38,7 +38,7 @@ fi
 # Check the public key exists
 if [ -f "$KEY_PATH_PUB" ]; then
 	# Remove the key
-	removalCommand "$KEY_PATH_PUB"
+	$removalCommand "$KEY_PATH_PUB"
 
 	# Tell the user the private key has been removed
 	echo "$KEY_USER@$KEY_DOMAIN: Removed the public key"
