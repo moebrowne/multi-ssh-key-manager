@@ -68,7 +68,7 @@ for keyType in $KEY_TYPES; do
 				[[ `cat "$keyPathPub"` =~ $regexkeyComment ]]
 				keyComment="${BASH_REMATCH[1]}"
 
-				keyFlags="$keyFlags[PUB] "
+				keyFlags="$keyFlags[$COLOUR_GRN""PUB$COLOUR_RST] "
 			else
 				keyFlags="$keyFlags[$COLOUR_RED""NO PUB$COLOUR_RST] "
 			fi
@@ -87,7 +87,7 @@ for keyType in $KEY_TYPES; do
 					keyLength="$COLOUR_YEL$keyLength bit$COLOUR_RST"
 				fi
 
-				keyFlags="$keyFlags[PRIV] "
+				keyFlags="$keyFlags[$COLOUR_GRN""PRIV$COLOUR_RST] "
 			else
 				keyFlags="$keyFlags[$COLOUR_RED""NO PRIV$COLOUR_RST] "
 			fi
