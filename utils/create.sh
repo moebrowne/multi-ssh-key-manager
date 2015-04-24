@@ -21,14 +21,14 @@ fi
 chmod 0700 "$KEY_PATH_DIR"
 
 # Write the key
-echo "Writing a $KEY_BITS bit $KEY_TYPE key to: $KEY_PATH_KEY"
-$EXEC_KEYGEN -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_KEY" -N "$KEY_PASS"
+echo "Writing a $KEY_BITS bit $KEY_TYPE key to: $KEY_PATH_PRIV"
+$EXEC_KEYGEN -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_PRIV" -N "$KEY_PASS"
 
 # Set the permissions of the key
-chmod 0600 "$KEY_PATH_KEY"
+chmod 0600 "$KEY_PATH_PRIV"
 
 # Check the key was created
-if [ ! -f "$KEY_PATH_KEY" ]; then
+if [ ! -f "$KEY_PATH_PRIV" ]; then
 	echo "ERROR: Something went wrong, key not created"
 else
 	echo "Key written successfully"

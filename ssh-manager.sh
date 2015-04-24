@@ -89,7 +89,7 @@ if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ]; then
 	KEY_PATH_DIR="$KEY_PATH_ROOT/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
 
 	# Set the path of the key its self
-	KEY_PATH_KEY="$KEY_PATH_DIR/$KEY_USER"
+	KEY_PATH_PRIV="$KEY_PATH_DIR/$KEY_USER"
 
 fi
 
