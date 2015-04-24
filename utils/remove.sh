@@ -6,12 +6,13 @@ removalCommands['shred']="/usr/bin/shred -zu"
 removalCommands['shred100']="/usr/bin/shred -zun 100"
 
 # Get just the command
-regexArgRemovalProgramExec='^([^ ])'
-[[ ${removalPrograms[$KEY_REMOVAL_PROG]} =~ regexArgRemovalProgramExec ]]
+regexArgRemovalProgramExec='(/[^ ]+)'
+[[ ${removalCommands[$KEY_REMOVAL_PROG]} =~ $regexArgRemovalProgramExec ]]
 removalProgramExec="${BASH_REMATCH[1]}"
 
 # Check the requested removal command is avaliable
-if ! command_exists "$removalProgramExec"; then
+if ! command_exists $removalProgramExec; then
+	echo "$removalProgramExec NOT FOUND"
 	#Use RM as a safe default
 	KEY_REMOVAL_PROG="rm"
 fi
