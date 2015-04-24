@@ -17,6 +17,7 @@ USERNAME=`id -un`
 # Setup the global variables
 KEY_MIN_LENGH=1024
 KEY_MIN_RECOM=2048
+KEY_MIN_DEFAULT=4096
 
 # Set the key base root
 KEY_PATH_ROOT="/home/$USERNAME/.ssh"
@@ -58,7 +59,7 @@ if [ "${BASH_REMATCH[2]}" != "" ]; then
 		echo -e "$COLOUR_RED""WARNING:$COLOUR_RST Requested key length is short! Please use key lengths greater than $KEY_MIN_RECOM bits"
 	fi
 else
-	KEY_BITS=4096
+	KEY_BITS=$KEY_MIN_DEFAULT
 fi
 
 regexArgPasswd=' -(-passwd|p) '
