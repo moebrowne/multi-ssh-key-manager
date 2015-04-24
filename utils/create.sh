@@ -26,6 +26,7 @@ $EXEC_KEYGEN -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_PRIV"
 
 # Set the permissions of the key
 chmod 0600 "$KEY_PATH_PRIV"
+chmod 0644 "$KEY_PATH_PUB"
 
 # Check the key was created
 if [ ! -f "$KEY_PATH_PRIV" ]; then
