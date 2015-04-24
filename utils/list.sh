@@ -9,9 +9,9 @@ fi
 declare -A userArray
 
 #Define regex rules
-regexkeyComment="^ssh-rsa .+ (.+)$"
-regexkeyLength="([0-9]+) bit"
-regexkeyFile='^([^\.]+)(.pub)?$'
+regexKeyComment="^ssh-rsa .+ (.+)$"
+regexKeyLength="([0-9]+) bit"
+regexKeyFile='^([^\.]+)(.pub)?$'
 
 # Get all the key types
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
@@ -41,7 +41,7 @@ for keyType in $KEY_TYPES; do
 		for keyFile in $KEY_USERS; do
 
 			# Get the user name from this key
-			[[ $keyFile =~ $regexkeyFile ]]
+			[[ $keyFile =~ $regexKeyFile ]]
 			keyUsername="${BASH_REMATCH[1]}"
 
 			# Check if we have already displayed the key for this user
@@ -65,7 +65,7 @@ for keyType in $KEY_TYPES; do
 			if [ -f "$keyPathPub" ]; then
 
 				# Get the comment from the key
-				[[ `cat "$keyPathPub"` =~ $regexkeyComment ]]
+				[[ `cat "$keyPathPub"` =~ $regexKeyComment ]]
 				keyComment="${BASH_REMATCH[1]}"
 
 				keyFlags="$keyFlags[$COLOUR_GRN""PUB$COLOUR_RST] "
@@ -77,7 +77,7 @@ for keyType in $KEY_TYPES; do
 			if [ -f "$keyPathPriv" ]; then
 
 				# Get Key length
-				[[ `$EXEC_OPENSSL $keyType -in "$keyPathPriv" -text -noout` =~ $regexkeyLength ]]
+				[[ `$EXEC_OPENSSL $keyType -in "$keyPathPriv" -text -noout` =~ $regexKeyLength ]]
 				keyLength="${BASH_REMATCH[1]}"
 
 				# Check if the key is of a proper length
