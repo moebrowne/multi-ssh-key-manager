@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Get the source directory
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+
+# Set the library root path
+LIBRARY_PATH_ROOT="$DIR/utils"
+
+# Include the generic libraries
+. "$LIBRARY_PATH_ROOT/generic.sh"
+. "$LIBRARY_PATH_ROOT/colours.sh"
+
 #Get the current users name
 USERNAME=`id -un`
 
@@ -40,6 +51,11 @@ regexArgBits=' -(-bits|b) ([0-9]+) '
 [[ $args =~ $regexArgBits ]]
 if [ "${BASH_REMATCH[2]}" != "" ]; then
 	KEY_BITS="${BASH_REMATCH[2]}"
+
+	# Warn if the requested key length is <= the minimum
+	if [ $KEY_BITS -lt $KEY_MIN_LENGH ]; then
+		echo -e "$COLOUR_RED""WARNING:$COLOUR_RST Requested key length is short! Please use key lengths greater than $KEY_MIN_LENGH bits"
+	fi
 else
 	KEY_BITS=4096
 fi
@@ -102,17 +118,6 @@ if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ]; then
 	KEY_PATH_PUB="$KEY_PATH_DIR/$KEY_USER.pub"
 
 fi
-
-# Get the source directory
-DIR="${BASH_SOURCE%/*}"
-if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
-
-# Set the library root path
-LIBRARY_PATH_ROOT="$DIR/utils"
-
-# Include the generic libraries
-. "$LIBRARY_PATH_ROOT/generic.sh"
-. "$LIBRARY_PATH_ROOT/colours.sh"
 
 # Set the library path
 LIBRARY_PATH="$LIBRARY_PATH_ROOT/$ACTION.sh"
