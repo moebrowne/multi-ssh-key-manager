@@ -11,3 +11,4 @@ Improvements:
 - Add a renew method
 - Add check for password protected keys when trying to list keys
 - In the list method give a message if there are no keys
+- Add a check/repair method that checks/sets permissions
