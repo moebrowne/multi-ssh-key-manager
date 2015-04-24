@@ -17,7 +17,7 @@ regexkeyFile='^([^\.]+)(.pub)?$'
 KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
 # Output the table headers
-echo -e "Type\033[10GLength\033[24GUser\033[40GDomain\033[63GFlags\033[81GComment"
+echo -e "Type\033[10GLength\033[24GUser\033[40GServer\033[63GFlags\033[81GComment"
 
 # Loop through all the key types
 for keyType in $KEY_TYPES; do
