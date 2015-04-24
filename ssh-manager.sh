@@ -60,6 +60,15 @@ else
 	KEY_PATH_SHOW=false
 fi
 
+regexArgRemovalProgram=' -(-remove-with|d) ([^ ]+) '
+[[ $args =~ $regexArgRemovalProgram ]]
+if [ "${BASH_REMATCH[2]}" != "" ]; then
+	KEY_REMOVAL_PROG="${BASH_REMATCH[2]}"
+else
+	KEY_REMOVAL_PROG="shred"
+fi
+
+
 
 #echo "ACTION			$ACTION"
 #echo "CONNECTION_STRING	$CONNECTION_STRING"
