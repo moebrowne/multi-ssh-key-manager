@@ -1,9 +1,9 @@
 
 # Declare an array of removal programs
 declare -A removalCommands
-removalCommands['rm']="rm -f"
-removalCommands['shred']="shred -zu"
-removalCommands['shred100']="shred -zun 100"
+removalCommands['rm']="/bin/rm -f"
+removalCommands['shred']="/usr/bin/shred -zu"
+removalCommands['shred100']="/usr/bin/shred -zun 100"
 
 # Get just the command
 regexArgRemovalProgramExec='^([^ ])'
