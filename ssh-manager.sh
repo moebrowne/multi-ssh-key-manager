@@ -15,7 +15,7 @@ EXEC_OPENSSL="/usr/bin/openssl"
 
 args=" $@ "
 
-regexArgAction=' ([^ -]*) ?([^ -]*) '
+regexArgAction='^ ([^ -]*) ?([^ -]*) '
 [[ $args =~ $regexArgAction ]]
 ACTION="${BASH_REMATCH[1]}"
 CONNECTION_STRING="${BASH_REMATCH[2]}"
