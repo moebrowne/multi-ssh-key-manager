@@ -59,11 +59,6 @@ regexArgBits=' -(-bits|b) ([0-9]+) '
 [[ $args =~ $regexArgBits ]]
 if [ "${BASH_REMATCH[2]}" != "" ]; then
 	KEY_BITS="${BASH_REMATCH[2]}"
-
-	# Warn if the requested key length is <= the minimum
-	if [ $KEY_BITS -lt $KEY_MIN_LENGH ]; then
-		echo -e "$COLOUR_RED""WARNING:$COLOUR_RST Requested key length is short! Please use key lengths greater than $KEY_MIN_RECOM bits"
-	fi
 else
 	KEY_BITS=$KEY_MIN_DEFAULT
 fi
@@ -101,6 +96,12 @@ fi
 #echo "KEY_BITS		$KEY_BITS"
 #echo "KEY_TYPE		$KEY_TYPE"
 #echo "KEY_PATH_SHOW		$KEY_PATH_SHOW"
+
+
+# Warn if the requested key length is <= the minimum
+if [ $KEY_BITS -lt $KEY_MIN_LENGH ]; then
+	echo -e "$COLOUR_RED""WARNING:$COLOUR_RST Requested key length is short! Please use key lengths greater than $KEY_MIN_RECOM bits"
+fi
 
 # Split the connection string into the domain and the username
 IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
