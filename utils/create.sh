@@ -9,6 +9,14 @@ fi
 if [ $KEY_PASS_PROMPT = true ]; then
 	read -s -p "Enter password: " KEY_PASS
 	echo
+	read -s -p "Enter password again: " KEY_PASS_CONFIRM
+	echo
+
+	if [ $KEY_PASS != $KEY_PASS_CONFIRM ]; then
+		echo "ERROR: Passwords don't match"
+		exit
+	fi
+
 fi
 
 # Create the directory to store the key in if it doesn't already
