@@ -12,4 +12,3 @@ Improvements:
 	- Check: See if permissions & ownership are correct
 	- Repair: Reset permissions & ownership where incorrect
 - Add a finger print action
-- Add a confirm password
