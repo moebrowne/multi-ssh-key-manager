@@ -12,3 +12,4 @@ Improvements:
 	- Check: See if permissions & ownership are correct
 	- Repair: Reset permissions & ownership where incorrect
 - Add a finger print action
+- Add a function to copy the pub key to the clipboard using `xclip`
