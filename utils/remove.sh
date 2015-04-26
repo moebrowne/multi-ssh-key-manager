@@ -29,10 +29,10 @@ if [ -f "$KEY_PATH_PRIV" ]; then
 	$removalCommand "$KEY_PATH_PRIV"
 
 	# Tell the user the private key has been removed
-	echo "$KEY_USER@$KEY_DOMAIN: Removed the private key"
+	echo "$KEY_USER@$KEY_HOSTNAME: Removed the private key"
 else
 	# Tell the user the private key cant be removed
-	echo "$KEY_USER@$KEY_DOMAIN: No private key found"
+	echo "$KEY_USER@$KEY_HOSTNAME: No private key found"
 fi
 
 # Check the public key exists
@@ -41,8 +41,8 @@ if [ -f "$KEY_PATH_PUB" ]; then
 	$removalCommand "$KEY_PATH_PUB"
 
 	# Tell the user the private key has been removed
-	echo "$KEY_USER@$KEY_DOMAIN: Removed the public key"
+	echo "$KEY_USER@$KEY_HOSTNAME: Removed the public key"
 else
 	# Tell the user the private key cant be removed
-	echo "$KEY_USER@$KEY_DOMAIN: No public key found"
+	echo "$KEY_USER@$KEY_HOSTNAME: No public key found"
 fi

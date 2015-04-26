@@ -30,17 +30,17 @@ for keyType in $KEY_TYPES; do
 	# Set the path to this type of key
 	keyTypePath="$KEY_PATH_ROOT/$keyType"
 
-	# Find all the domains with a key of this type
-	KEY_DOMAINS=`find $keyTypePath/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
+	# Find all the hostnames with a key of this type
+	KEY_HOSTNAMES=`find $keyTypePath/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
-	# Loop through each domain
-	for keyDomain in $KEY_DOMAINS; do
+	# Loop through each hostname
+	for keyHostname in $KEY_HOSTNAMES; do
 
-		# Set the path to the key files for this domain
-		keyDomainPath="$keyTypePath/$keyDomain"
+		# Set the path to the key files for this hostname
+		keyHostnamePath="$keyTypePath/$keyHostname"
 
-		# Get all the keys for this domain
-		KEY_USERS=`find $keyDomainPath/ -mindepth 1 -maxdepth 1 -type f -printf "%f\n"`
+		# Get all the keys for this hostname
+		KEY_USERS=`find $keyHostnamePath/ -mindepth 1 -maxdepth 1 -type f -printf "%f\n"`
 
 		# Loop through each key file we could finds
 		for keyFile in $KEY_USERS; do
@@ -58,8 +58,8 @@ for keyType in $KEY_TYPES; do
 			userArray[$keyUsername]=true
 
 			# Set the paths for the pub and private keys
-			keyPathPub="$keyDomainPath/$keyUsername.pub"
-			keyPathPriv="$keyDomainPath/$keyUsername"
+			keyPathPub="$keyHostnamePath/$keyUsername.pub"
+			keyPathPriv="$keyHostnamePath/$keyUsername"
 
 			# Resets
 			keyLength="????"
@@ -103,7 +103,7 @@ for keyType in $KEY_TYPES; do
 			fi
 
 			# Show the information
-			echo -e "${keyType^^}\033[10G$keyLength\033[24G$COLOUR_CYN$keyUsername$COLOUR_RST\033[40G$COLOUR_PUR$keyDomain$COLOUR_RST\033[63G$keyFlags\033[81G$COLOUR_GRY$keyComment$COLOUR_RST $keyPathComment"
+			echo -e "${keyType^^}\033[10G$keyLength\033[24G$COLOUR_CYN$keyUsername$COLOUR_RST\033[40G$COLOUR_PUR$keyHostname$COLOUR_RST\033[63G$keyFlags\033[81G$COLOUR_GRY$keyComment$COLOUR_RST $keyPathComment"
 		done
 	done
 done

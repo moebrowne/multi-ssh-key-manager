@@ -108,24 +108,24 @@ if [ $KEY_BITS -lt $KEY_MIN_LENGH ]; then
 	echo -e "$COLOUR_RED""WARNING:$COLOUR_RST Requested key length is short! Please use key lengths greater than $KEY_MIN_RECOM bits"
 fi
 
-# Split the connection string into the domain and the username
-IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
+# Split the connection string into the hostname and the username
+IFS='@' read KEY_USER KEY_HOSTNAME <<< "$CONNECTION_STRING"
 
 # Only throw an error if the connection string is missing for actions that require them
 if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ] || [ "$ACTION" = "authorise" ]; then
 
-	# Check both the username and domain have been found correctly
+	# Check both the username and hostname have been found correctly
 	if [ "$KEY_USER" = "" ]; then
 		echo "ERROR: Please specify a username"
 		exit
 	fi
-	if [ "$KEY_DOMAIN" = "" ]; then
-		echo "ERROR: Please specify a domain"
+	if [ "$KEY_HOSTNAME" = "" ]; then
+		echo "ERROR: Please specify a hostname"
 		exit
 	fi
 
 	# Set the path the key should be written to
-	KEY_PATH_DIR="$KEY_PATH_ROOT/$KEY_TYPE/$KEY_DOMAIN" #Must be an absolute path!
+	KEY_PATH_DIR="$KEY_PATH_ROOT/$KEY_TYPE/$KEY_HOSTNAME" #Must be an absolute path!
 
 	# Set the path of the keys
 	KEY_PATH_PRIV="$KEY_PATH_DIR/$KEY_USER"

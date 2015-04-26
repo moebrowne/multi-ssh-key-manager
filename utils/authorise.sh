@@ -3,4 +3,4 @@
 command_exists_exit "$EXEC_COPYID"
 
 # Copy the key
-ssh-copy-id -i "$KEY_PATH_PUB" "$KEY_USER@$KEY_DOMAIN" 2&>1 /dev/null
+ssh-copy-id -i "$KEY_PATH_PUB" "$KEY_USER@$KEY_HOSTNAME" 2&>1 /dev/null
