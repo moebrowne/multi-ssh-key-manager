@@ -70,3 +70,12 @@ Copy a public key to the servers authorised hosts
 #### Example
 
     ./ssh-manager.sh authorise foo@bar.com
+
+
+## Fingerprint
+
+Get the finger print of a public key
+
+#### Example
+
+    ./ssh-manager.sh fingerprint foo@bar.com
