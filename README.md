@@ -61,3 +61,12 @@ The `-d` / `--remove-with` flag can take the following values:
 - `rm`
 - `shred`
 - `shred100`
+
+
+## Authorise
+
+Copy a public key to the servers authorised hosts
+
+#### Example
+
+    ./ssh-manager.sh authorise foo@bar.com
