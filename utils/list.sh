@@ -1,6 +1,6 @@
 
 # Check if openssl is avaliable
-command_exists_exit "openssl"
+command_exists_exit "$EXEC_OPENSSL"
 
 # Define an array of users to make sure we can separate pub and private keys
 declare -A userArray

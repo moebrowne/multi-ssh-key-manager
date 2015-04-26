@@ -1,6 +1,6 @@
 
 # Check if ssh-keygen is avaliable
-command_exists_exit "ssh-keygen"
+command_exists_exit "$EXEC_KEYGEN"
 
 # Prompt for a password if required
 if [ $KEY_PASS_PROMPT = true ]; then
