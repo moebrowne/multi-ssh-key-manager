@@ -17,9 +17,6 @@ echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.4$COLOUR_RST"
 echo -e "-----------------------------------------"
 echo
 
-#Get the current users name
-USERNAME=`id -un`
-
 # Setup the global variables
 KEY_MIN_LENGH=1024
 KEY_MIN_RECOM=2048
