@@ -29,8 +29,8 @@ KEY_MIN_DEFAULT=4096
 KEY_PATH_ROOT="/home/$USERNAME/.ssh"
 
 # Define the executables to use
-EXEC_KEYGEN="/usr/bin/ssh-keygen"
-EXEC_OPENSSL="/usr/bin/openssl"
+EXEC_KEYGEN="ssh-keygen"
+EXEC_OPENSSL="openssl"
 
 args=" $@ "
 
