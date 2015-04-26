@@ -46,3 +46,6 @@ else
 	# Tell the user the private key cant be removed
 	echo "$KEY_USER@$KEY_HOSTNAME: No public key found"
 fi
+
+# Cleanup, Remove any empty key directories
+find "$KEY_PATH_ROOT/$KEY_TYPE/" -type d -empty -delete
