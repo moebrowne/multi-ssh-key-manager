@@ -13,7 +13,7 @@ LIBRARY_PATH_ROOT="$DIR/utils"
 
 # Show the banner
 echo -e "-----------------------------------------"
-echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.3$COLOUR_RST"
+echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.4$COLOUR_RST"
 echo -e "-----------------------------------------"
 echo
 
