@@ -26,7 +26,7 @@ KEY_MIN_RECOM=2048
 KEY_MIN_DEFAULT=4096
 
 # Set the key base root
-KEY_PATH_ROOT="/home/$USERNAME/.ssh"
+KEY_PATH_ROOT="$HOME/.ssh"
 
 # Define the executables to use
 EXEC_KEYGEN="ssh-keygen"
