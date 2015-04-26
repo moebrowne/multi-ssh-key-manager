@@ -1,9 +1,6 @@
 
 # Check if openssl is avaliable
-if ! command_exists "$EXEC_OPENSSL"; then
-	echo "ERROR: openssl can't be found [$EXEC_OPENSSL]"
-	exit
-fi
+command_exists_exit "openssl"
 
 # Define an array of users to make sure we can separate pub and private keys
 declare -A userArray

@@ -1,9 +1,6 @@
 
 # Check if ssh-keygen is avaliable
-if ! command_exists "$EXEC_KEYGEN"; then
-	echo "ERROR: ssh-keygen can't be found [$EXEC_KEYGEN]"
-	exit
-fi
+command_exists_exit "ssh-keygen"
 
 # Prompt for a password if required
 if [ $KEY_PASS_PROMPT = true ]; then
