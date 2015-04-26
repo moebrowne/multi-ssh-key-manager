@@ -30,6 +30,7 @@ KEY_PATH_ROOT="/home/$USERNAME/.ssh"
 
 # Define the executables to use
 EXEC_KEYGEN="ssh-keygen"
+EXEC_COPYID="ssh-copy-id"
 EXEC_OPENSSL="openssl"
 
 args=" $@ "
@@ -111,7 +112,7 @@ fi
 IFS='@' read KEY_USER KEY_DOMAIN <<< "$CONNECTION_STRING"
 
 # Only throw an error if the connection string is missing for actions that require them
-if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ]; then
+if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ] || [ "$ACTION" = "authorise" ]; then
 
 	# Check both the username and domain have been found correctly
 	if [ "$KEY_USER" = "" ]; then
