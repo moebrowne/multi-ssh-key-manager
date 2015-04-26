@@ -87,7 +87,11 @@ else
 	KEY_REMOVAL_PROG="shred"
 fi
 
-
+# If no parameters were passed show the usage
+if [ $# = 0 ]; then
+	usage
+	exit 1
+fi
 
 #echo "ACTION			$ACTION"
 #echo "CONNECTION_STRING	$CONNECTION_STRING"
