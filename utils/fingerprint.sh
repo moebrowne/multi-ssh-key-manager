@@ -9,9 +9,14 @@ if [ -f "$KEY_PATH_PUB" ]; then
 	[[ `$EXEC_KEYGEN -lf "$KEY_PATH_PUB"` =~ $regexKeyFingerprint ]]
 	KEY_FINGERPRINT="${BASH_REMATCH[1]}"
 
-	echo "$KEY_USER@$KEY_HOSTNAME:"
+	if [ ! $KEY_FINGERPRINT_SIMPLE = true ]; then
+		echo "$KEY_USER@$KEY_HOSTNAME:"
+	fi
 	echo "$KEY_FINGERPRINT"
+
 else
 	# Tell the user the private key cant be removed
-	echo "$KEY_USER@$KEY_HOSTNAME: No public key found"
+	if [ ! $KEY_FINGERPRINT_SIMPLE = true ]; then
+		echo "$KEY_USER@$KEY_HOSTNAME: No public key found"
+	fi
 fi

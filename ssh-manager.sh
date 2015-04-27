@@ -85,6 +85,14 @@ else
 	KEY_REMOVAL_PROG="shred"
 fi
 
+regexArgPasswd=' -(-simple) '
+[[ $args =~ $regexArgPasswd ]]
+if [ "${BASH_REMATCH[1]}" != "" ]; then
+	KEY_FINGERPRINT_SIMPLE=true
+else
+	KEY_FINGERPRINT_SIMPLE=false
+fi
+
 # If no parameters were passed show the usage
 if [ $# = 0 ]; then
 	usage
