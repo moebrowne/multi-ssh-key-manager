@@ -88,10 +88,12 @@ else
 fi
 
 # Show the banner
-echo -e "-----------------------------------------"
-echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.4$COLOUR_RST"
-echo -e "-----------------------------------------"
-echo
+if [ ! $KEY_FINGERPRINT_SIMPLE = true ]; then
+	echo -e "-----------------------------------------"
+	echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.4$COLOUR_RST"
+	echo -e "-----------------------------------------"
+	echo
+fi
 
 # If no parameters were passed show the usage
 if [ $# = 0 ]; then
