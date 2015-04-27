@@ -10,4 +10,3 @@ Improvements:
 	- Check: See if permissions & ownership are correct
 	- Repair: Reset permissions & ownership where incorrect
 - Add a function to copy the pub key to the clipboard using `xclip`
-- Add a simple flag to the fingerprint method that just returns the fingerprint string
