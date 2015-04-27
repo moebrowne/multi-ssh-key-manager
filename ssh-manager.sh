@@ -151,5 +151,3 @@ fi
 
 # Include the library for handling this action
 . "$LIBRARY_PATH"
-
-echo
