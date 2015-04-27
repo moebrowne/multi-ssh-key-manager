@@ -11,12 +11,6 @@ LIBRARY_PATH_ROOT="$DIR/utils"
 . "$LIBRARY_PATH_ROOT/generic.sh"
 . "$LIBRARY_PATH_ROOT/colours.sh"
 
-# Show the banner
-echo -e "-----------------------------------------"
-echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.4$COLOUR_RST"
-echo -e "-----------------------------------------"
-echo
-
 # Setup the global variables
 KEY_MIN_LENGH=1024
 KEY_MIN_RECOM=2048
@@ -92,6 +86,12 @@ if [ "${BASH_REMATCH[1]}" != "" ]; then
 else
 	KEY_FINGERPRINT_SIMPLE=false
 fi
+
+# Show the banner
+echo -e "-----------------------------------------"
+echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.4$COLOUR_RST"
+echo -e "-----------------------------------------"
+echo
 
 # If no parameters were passed show the usage
 if [ $# = 0 ]; then
