@@ -23,6 +23,7 @@ KEY_PATH_ROOT="$HOME/.ssh"
 EXEC_KEYGEN="ssh-keygen"
 EXEC_COPYID="ssh-copy-id"
 EXEC_OPENSSL="openssl"
+EXEC_COPY="xclip"
 
 args=" $@ "
 
@@ -119,7 +120,7 @@ fi
 IFS='@' read KEY_USER KEY_HOSTNAME <<< "$CONNECTION_STRING"
 
 # Only throw an error if the connection string is missing for actions that require them
-if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ] || [ "$ACTION" = "authorise" ] || [ "$ACTION" = "fingerprint" ]; then
+if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ] || [ "$ACTION" = "authorise" ] || [ "$ACTION" = "fingerprint" ] || [ "$ACTION" = "copy" ]; then
 
 	# Check both the username and hostname have been found correctly
 	if [ "$KEY_USER" = "" ]; then
