@@ -91,7 +91,7 @@ fi
 # Show the banner
 if [ ! $KEY_FINGERPRINT_SIMPLE = true ]; then
 	echo -e "-----------------------------------------"
-	echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.4$COLOUR_RST"
+	echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.5$COLOUR_RST"
 	echo -e "-----------------------------------------"
 	echo
 fi
