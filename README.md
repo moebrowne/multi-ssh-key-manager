@@ -79,3 +79,11 @@ Get the finger print of a public key
 #### Example
 
     ./ssh-manager.sh fingerprint foo@bar.com
+
+## Copy
+
+Copies a users public key to the XClipboard so it can be easily pasted somewhere, for example GitHub.
+
+#### Example
+
+    ./ssh-manager.sh copy foo@bar.com
