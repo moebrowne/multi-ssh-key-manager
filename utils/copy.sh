@@ -11,6 +11,6 @@ if [ -f "$KEY_PATH_PUB" ]; then
 	echo "$KEY_USER@$KEY_HOSTNAME: The public key is now on your clipboard"
 
 else
-	# Tell the user the private key cant be removed
-		echo "$KEY_USER@$KEY_HOSTNAME: No public key found"
+	# Tell the user the public key cant be found
+	echo "$KEY_USER@$KEY_HOSTNAME: No public key found"
 fi
