@@ -23,15 +23,15 @@ if [ ! -d "$KEY_PATH_DIR" ]; then
 fi
 
 # Set the permissions of the key directory
-chmod 0700 "$KEY_PATH_DIR"
+chmod $KEY_PERM_DIR "$KEY_PATH_DIR"
 
 # Write the key
 echo "Writing a $KEY_BITS bit $KEY_TYPE key to: $KEY_PATH_PRIV"
 $EXEC_KEYGEN -t "$KEY_TYPE" -b "$KEY_BITS" -C "$KEY_COMMENT" -f "$KEY_PATH_PRIV" -N "$KEY_PASS"
 
 # Set the permissions of the key
-chmod 0600 "$KEY_PATH_PRIV"
-chmod 0644 "$KEY_PATH_PUB"
+chmod $KEY_PERM_PRIV "$KEY_PATH_PRIV"
+chmod $KEY_PERM_PUB "$KEY_PATH_PUB"
 
 # Check the key was created
 if [ ! -f "$KEY_PATH_PRIV" ]; then
