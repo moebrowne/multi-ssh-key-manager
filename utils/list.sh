@@ -3,7 +3,7 @@
 command_exists_exit "$EXEC_OPENSSL"
 
 # Define an array of users to make sure we can separate pub and private keys
-declare -A userArray
+declare -A userHostArray
 
 #Define regex rules
 regexKeyComment="^ssh-rsa .+ (.+)$"
@@ -50,12 +50,12 @@ for keyType in $KEY_TYPES; do
 			keyUsername="${BASH_REMATCH[1]}"
 
 			# Check if we have already displayed the key for this user
-			if [ "${userArray[$keyUsername]}" = true ]; then
+			if [ "${userHostArray["$keyHostname$keyUsername"]}" = true ]; then
 				continue
 			fi
 
 			# Add this user to the array of users weve already proccessed
-			userArray[$keyUsername]=true
+			userHostArray["$keyHostname$keyUsername"]=true
 
 			# Set the paths for the pub and private keys
 			keyPathPub="$keyHostnamePath/$keyUsername.pub"
