@@ -7,9 +7,11 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 # Set the library root path
 LIBRARY_PATH_ROOT="$DIR/utils"
 
-# Include the generic libraries
-. "$LIBRARY_PATH_ROOT/generic.sh"
-. "$LIBRARY_PATH_ROOT/colours.sh"
+# Include all libraries in the libs directory
+for f in "$LIBRARY_PATH_ROOT"/*.sh; do
+	# Include the directory
+	source "$f"
+done
 
 # Setup the global variables
 KEY_MIN_LENGH=1024
