@@ -14,5 +14,5 @@ command_exists_exit () {
 }
 usage () {
   echo "Usage: $0 [create|list|remove] user@hostname [-p|--paths] [-c|--comment [key_comment]] [-d|--remove-with [delete_function]] [-t [key_type]] [-b|--bits [key_length]]" >&2
-  exit 1
+  exit 0
 }
