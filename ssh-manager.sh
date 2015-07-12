@@ -5,7 +5,7 @@ DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
 # Set the library root path
-LIBRARY_PATH_ROOT="$DIR/utils"
+LIBRARY_PATH_ROOT="$DIR/libs"
 
 # Include all libraries in the libs directory
 for f in "$LIBRARY_PATH_ROOT"/*.sh; do
