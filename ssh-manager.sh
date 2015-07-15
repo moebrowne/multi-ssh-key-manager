@@ -4,8 +4,11 @@
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
+# Set the script root path
+PATH_ROOT="$DIR"
+
 # Set the library root path
-LIBRARY_PATH_ROOT="$DIR/libs"
+LIBRARY_PATH_ROOT="$PATH_ROOT/libs"
 
 # Include all libraries in the libs directory
 for f in "$LIBRARY_PATH_ROOT"/*.sh; do
@@ -147,13 +150,13 @@ if [ "$ACTION" = "create" ] || [ "$ACTION" = "remove" ] || [ "$ACTION" = "author
 fi
 
 # Set the library path
-LIBRARY_PATH="$LIBRARY_PATH_ROOT/$ACTION.sh"
+UTIL_PATH="$PATH_ROOT/utils/$ACTION.sh"
 
 # Check the library exists
-if [ ! -f "$LIBRARY_PATH" ]; then
+if [ ! -f "$UTIL_PATH" ]; then
 	echo "ERROR: Unknown action '$ACTION'"
 	exit
 fi
 
 # Include the library for handling this action
-. "$LIBRARY_PATH"
+. "$UTIL_PATH"
