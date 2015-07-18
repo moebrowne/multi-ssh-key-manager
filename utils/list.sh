@@ -11,7 +11,7 @@ regexKeyLength="([0-9]+) bit"
 regexKeyFile='^([^\.]+)(.pub)?$'
 
 # Check if there are any keys
-KEY_COUNT=`find $KEY_PATH_ROOT/**/* -type f -printf "%f\n" | wc -l`
+KEY_COUNT=`find $KEY_PATH_ROOT/**/* -follow -type f -printf "%f\n" | wc -l`
 
 if [ $KEY_COUNT = 0 ]; then
 	echo "No keys could be found"
@@ -19,7 +19,7 @@ if [ $KEY_COUNT = 0 ]; then
 fi
 
 # Get all the key types
-KEY_TYPES=`find $KEY_PATH_ROOT/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
+KEY_TYPES=`find $KEY_PATH_ROOT/ -follow -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
 # Output the table headers
 echo -e "Type\033[10GLength\033[24GUser\033[40GServer\033[63GFlags\033[81GComment"
@@ -31,7 +31,7 @@ for keyType in $KEY_TYPES; do
 	keyTypePath="$KEY_PATH_ROOT/$keyType"
 
 	# Find all the hostnames with a key of this type
-	KEY_HOSTNAMES=`find $keyTypePath/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
+	KEY_HOSTNAMES=`find $keyTypePath/ -follow -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
 	# Loop through each hostname
 	for keyHostname in $KEY_HOSTNAMES; do
@@ -40,7 +40,7 @@ for keyType in $KEY_TYPES; do
 		keyHostnamePath="$keyTypePath/$keyHostname"
 
 		# Get all the keys for this hostname
-		KEY_USERS=`find $keyHostnamePath/ -mindepth 1 -maxdepth 1 -type f -printf "%f\n"`
+		KEY_USERS=`find $keyHostnamePath/ -follow -mindepth 1 -maxdepth 1 -type f -printf "%f\n"`
 
 		# Loop through each key file we could finds
 		for keyFile in $KEY_USERS; do
