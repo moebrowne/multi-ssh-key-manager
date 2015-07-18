@@ -92,9 +92,9 @@ for keyType in $KEY_TYPES; do
 					keyLength="$COLOUR_YEL$keyLength bit$COLOUR_RST"
 				fi
 
-				keyFlags="$keyFlags[$COLOUR_GRN""PRIV$COLOUR_RST] "
+				keyFlags="$keyFlags[$COLOUR_GRN""PRV$COLOUR_RST] "
 			else
-				keyFlags="$keyFlags[$COLOUR_RED""NO PRIV$COLOUR_RST] "
+				keyFlags="$keyFlags[$COLOUR_RED""NO PRV$COLOUR_RST] "
 			fi
 
 			# Check if the key is a symlink
