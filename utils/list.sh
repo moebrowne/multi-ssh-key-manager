@@ -97,6 +97,11 @@ for keyType in $KEY_TYPES; do
 				keyFlags="$keyFlags[$COLOUR_RED""NO PRIV$COLOUR_RST] "
 			fi
 
+			# Check if the key is a symlink
+			if [ -L "$keyPathPub" ] || [ -L "$keyHostnamePath" ]; then
+				keyFlags="$keyFlags[$COLOUR_YEL""SYM$COLOUR_RST] "
+			fi
+
 			# Check if we should show the keys path
 			if [ $KEY_PATH_SHOW = true ]; then
 				keyPathComment=" => $keyPathPriv"
