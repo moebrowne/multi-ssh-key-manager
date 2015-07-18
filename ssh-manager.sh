@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set the version
+VERSION="v1.5.2"
+
 # Get the source directory
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
@@ -100,7 +103,7 @@ fi
 # Show the banner
 if [ ! $KEY_FINGERPRINT_SIMPLE = true ]; then
 	echo -e "-----------------------------------------"
-	echo -e "$COLOUR_GRN  Multi SSH Key Manager v1.5$COLOUR_RST"
+	echo -e "$COLOUR_GRN  Multi SSH Key Manager $VERSION$COLOUR_RST"
 	echo -e "-----------------------------------------"
 	echo
 fi
