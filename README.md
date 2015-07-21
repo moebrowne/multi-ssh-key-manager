@@ -7,6 +7,12 @@ The only setup required is to add the following to the top of your SSH config `~
     Host *
     IdentityFile ~/.ssh/rsa/%h/%r
 
+## Alias
+
+Rather than having to `cd` to the repo and type out `./ssh-manager.sh` it's way easier to add an alias:
+
+    alias ssh-manage="/path/to/repo/ssh-manager.sh $@"
+
 ## Create A New Key
 
 To create a new key or replace an existing one use the following:
