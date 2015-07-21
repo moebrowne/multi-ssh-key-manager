@@ -35,6 +35,14 @@ To list all the keys we're currently tracking use:
 
 If you want to also see the absolute paths to the keys use `--paths`
 
+### Flags
+
+When you list out your keys there are a number of flags that can be assigned against each key:
+
+- [PRV] The private key is present
+- [PUB] The public key is present
+- [SYM] This key is a symlink to another key
+
 ## Remove A Key
 
 To remove a key you can use:
