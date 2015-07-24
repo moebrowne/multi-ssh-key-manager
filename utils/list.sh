@@ -24,6 +24,7 @@ KEY_TYPES=`find $KEY_PATH_ROOT/ -follow -mindepth 1 -maxdepth 1 -type d -printf 
 # Output the table headers
 echo -e "#\033[4GType\033[14GLength\033[28GUser\033[44GServer\033[67GFlags\033[85GComment"
 
+# Initalise the SSH key ID
 KEY_ID=0
 
 # Loop through all the key types
@@ -111,6 +112,8 @@ for keyType in $KEY_TYPES; do
 
 			# Show the information
 			echo -e "$KEY_ID\033[4G${keyType^^}\033[14G$keyLength\033[28G$COLOUR_CYN$keyUsername$COLOUR_RST\033[44G$COLOUR_PUR$keyHostname$COLOUR_RST\033[67G$keyFlags\033[85G$COLOUR_GRY$keyComment$COLOUR_RST $keyPathComment"
+
+			# Increment the SSH key ID
 			KEY_ID=$((KEY_ID+1))
 		done
 	done
