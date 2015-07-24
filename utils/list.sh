@@ -22,7 +22,9 @@ fi
 KEY_TYPES=`find $KEY_PATH_ROOT/ -follow -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
 
 # Output the table headers
-echo -e "Type\033[10GLength\033[24GUser\033[40GServer\033[63GFlags\033[81GComment"
+echo -e "#\033[4GType\033[14GLength\033[28GUser\033[44GServer\033[67GFlags\033[85GComment"
+
+KEY_ID=0
 
 # Loop through all the key types
 for keyType in $KEY_TYPES; do
@@ -108,7 +110,8 @@ for keyType in $KEY_TYPES; do
 			fi
 
 			# Show the information
-			echo -e "${keyType^^}\033[10G$keyLength\033[24G$COLOUR_CYN$keyUsername$COLOUR_RST\033[40G$COLOUR_PUR$keyHostname$COLOUR_RST\033[63G$keyFlags\033[81G$COLOUR_GRY$keyComment$COLOUR_RST $keyPathComment"
+			echo -e "$KEY_ID\033[4G${keyType^^}\033[14G$keyLength\033[28G$COLOUR_CYN$keyUsername$COLOUR_RST\033[44G$COLOUR_PUR$keyHostname$COLOUR_RST\033[67G$keyFlags\033[85G$COLOUR_GRY$keyComment$COLOUR_RST $keyPathComment"
+			KEY_ID=$((KEY_ID+1))
 		done
 	done
 done
