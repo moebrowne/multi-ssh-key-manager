@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the version
-VERSION="v1.5.3"
+VERSION="v1.5.4"
 
 # Get the source directory
 DIR="${BASH_SOURCE%/*}"
