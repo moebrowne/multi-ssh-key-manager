@@ -31,7 +31,7 @@ for keyType in $KEY_TYPES; do
 	keyTypePath="$KEY_PATH_ROOT/$keyType"
 
 	# Find all the hostnames with a key of this type
-	KEY_HOSTNAMES=`find $keyTypePath/ -follow -mindepth 1 -maxdepth 1 -type d -printf "%f\n"`
+	KEY_HOSTNAMES=`find $keyTypePath/ -follow -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort`
 
 	# Loop through each hostname
 	for keyHostname in $KEY_HOSTNAMES; do
@@ -40,7 +40,7 @@ for keyType in $KEY_TYPES; do
 		keyHostnamePath="$keyTypePath/$keyHostname"
 
 		# Get all the keys for this hostname
-		KEY_USERS=`find $keyHostnamePath/ -follow -mindepth 1 -maxdepth 1 -type f -printf "%f\n"`
+		KEY_USERS=`find $keyHostnamePath/ -follow -mindepth 1 -maxdepth 1 -type f -printf "%f\n" | sort`
 
 		# Loop through each key file we could finds
 		for keyFile in $KEY_USERS; do
