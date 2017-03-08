@@ -39,7 +39,7 @@ EXEC_COPY="xclip"
 
 args=" $@ "
 
-regexArgAction='^ ([^ -]*) ?([^ -]*) '
+regexArgAction='^ ([^ -]*) ?([^ ]*) '
 [[ $args =~ $regexArgAction ]]
 ACTION="${BASH_REMATCH[1]}"
 CONNECTION_STRING="${BASH_REMATCH[2]}"
